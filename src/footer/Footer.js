@@ -15,7 +15,7 @@ function day(n) {
       return 'friday';
     case 6:
       return 'saturday';
-    case 7:
+    case 0:
       return 'sunday';
     default:
       return 'MISTAKE';

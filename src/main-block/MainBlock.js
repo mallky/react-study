@@ -14,7 +14,7 @@ class DoneBttn extends Component{
 
   handleSubmit() {
     this.setState({done: !this.state.done});
-    this.props.addClassToTodo(this.state.done);
+    this.props.addClassToTodo();
   }
 
   render(){
@@ -37,7 +37,7 @@ class RemoveBttn extends Component{
 
   handleSubmit() {
     this.setState({remove: true});
-    this.props.removeTodo(this.state.remove);
+    this.props.removeTodo();
   }
 
   render(){
@@ -47,6 +47,23 @@ class RemoveBttn extends Component{
       </button>
     );
   }
+}
+
+function ControlButtonsTodo(props) {
+  return (
+      <div className="buttons-into-todo">
+        <DoneBttn addClassToTodo={props.addClassToTodo}/>
+        <RemoveBttn removeTodo={props.removeTodo}/>
+      </div>
+  );
+}
+
+function TodoText(props) {
+  return (
+      <div className={ props.active ? 'todo-text active' : 'todo-text'}>
+        { props.quiz + '' }
+      </div>
+  );
 }
 
 class ToDoItem extends Component{
@@ -73,15 +90,16 @@ class ToDoItem extends Component{
     }
     else {
       return (
-        <li key={this.props.quiz + ''} className={this.state.active ? 'active' : ''}>
+        <li key={this.props.quiz + ''}>
           <div className="todo">
-            <span>
-              { this.props.quiz + '' }
-            </span>
-            <span className="buttons-into-todo">
-              <DoneBttn addClassToTodo={this.addClassToTodo}/>
-              <RemoveBttn removeTodo={this.removeTodo}/>
-            </span>
+            <TodoText
+                active={this.state.active}
+                quiz={this.props.quiz}
+            />
+            <ControlButtonsTodo
+                addClassToTodo={this.addClassToTodo}
+                removeTodo={this.removeTodo}
+            />
           </div>
         </li>
       );

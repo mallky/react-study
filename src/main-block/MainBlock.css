@@ -34,9 +34,6 @@ li:first-child{
 .todo{
     text-align: left;
     margin-left: 2em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     border-top: 1px solid gray;
 }
 .todo span{
@@ -50,4 +47,16 @@ li:first-child{
 
 .buttons-into-todo {
     text-align: right;
+    float: right;
+    display: flex;
+    flex-direction: column;
+}
+.todo-text {
+    display: inline-block;
+    padding: 5px 0 5px 0;
+    margin: 5px 0;
+}
+
+li {
+    clear: both;
 }
