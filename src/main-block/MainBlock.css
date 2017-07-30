@@ -50,11 +50,13 @@ li:first-child{
     float: right;
     display: flex;
     flex-direction: column;
+    width: 35%;
 }
 .todo-text {
     display: inline-block;
     padding: 5px 0 5px 0;
     margin: 5px 0;
+    width: 65%;
 }
 
 li {
