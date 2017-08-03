@@ -106,7 +106,6 @@ class ToDoList extends Component{
 
     return (
       <div className="todo-list">
-        <h2>What you need to do today:</h2>
         <ol>
           {list}
         </ol>

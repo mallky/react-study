@@ -30,10 +30,6 @@
     max-height: inherit;
 }
 
-li:first-child{
-    margin-top: 40px;
-}
-
 .todo{
     text-align: left;
     margin-left: 2em;
@@ -69,4 +65,18 @@ li {
 .done, .remove{
     min-width: 90%;
     margin-right: 2em;
+}
+
+@media (max-width: 600px) {
+    .mainSection {
+        flex-direction: column;
+    }
+    .mainSection .text-area {
+        flex: 1
+    }
+    .mainSection .todo-list{
+        flex: 3;
+        border-right: none;
+        border-bottom: 1px solid #222;
+    }
 }

@@ -1,0 +1,19 @@
+.form-buttons {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.form-buttons button{
+    min-width: 70px;
+    max-width: 70px;
+    height: 50px;
+}
+
+.prev{
+
+}
+
+.next{
+
+}

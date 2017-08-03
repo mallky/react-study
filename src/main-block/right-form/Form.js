@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PrevNextButtons from './prev-next-buttons/PrevNextButtons';
 
 class TextArea extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class TextArea extends Component {
           <textarea value={value} onChange={this.handleChange}/>
           <button type="submit">Submit</button>
         </form>
+        <PrevNextButtons />
       </div>
     );
   }

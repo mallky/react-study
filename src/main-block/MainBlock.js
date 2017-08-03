@@ -15,18 +15,21 @@ import './MainBlock.css';
 class MainBlock extends Component {
   render() {
     return (
-      <div className="mainSection">
-        <ToDoList
-          quiz={this.props.todos}
-          addClassToTodo={this.props.doneTodo}
-          removeTodo={this.props.removeTodo}
-        />
+      <div>
+        <h2>What you need to do today:</h2>
+        <div className="mainSection">
+          <ToDoList
+            quiz={this.props.todos}
+            addClassToTodo={this.props.doneTodo}
+            removeTodo={this.props.removeTodo}
+          />
         <TextArea
           addTodos={this.props.addTodos}
           onChangeValue={this.props.onChangeValue}
           onSubmitValue={this.props.onSubmitValue}
           value={this.props.value}
         />
+        </div>
       </div>
     );
   }
