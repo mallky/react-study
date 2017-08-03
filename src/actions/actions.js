@@ -34,10 +34,10 @@ export function prevState(index) {
     }
 }
 
-export function nextState(state) {
+export function nextState(index) {
     return {
       type: NEXT_STATE,
-      state
+      index
     }
 }
 

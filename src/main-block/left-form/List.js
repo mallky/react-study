@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import done from '../../img/done.png'
+import remove from '../../img/remove.png'
 
 class DoneBttn extends Component{
   constructor(props) {
@@ -14,7 +16,7 @@ class DoneBttn extends Component{
   render(){
     return (
       <button className="done" onClick={this.handleSubmit}>
-        Done
+        <img src={done} alt="done!"/>
       </button>
     );
   }
@@ -34,7 +36,7 @@ class RemoveBttn extends Component{
   render(){
     return (
       <button className="remove" onClick={this.handleSubmit}>
-        Remove
+        <img src={remove} alt="remove!"/>
       </button>
     );
   }

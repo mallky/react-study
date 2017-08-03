@@ -28,7 +28,10 @@ class TextArea extends Component {
           <textarea value={value} onChange={this.handleChange}/>
           <button type="submit">Submit</button>
         </form>
-        <PrevNextButtons />
+        <PrevNextButtons 
+          toPrevState={this.props.toPrevState}
+          toNextState={this.props.toNextState}
+        />
       </div>
     );
   }
