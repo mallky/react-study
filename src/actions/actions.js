@@ -1,6 +1,8 @@
 export const  ADD_TODO = 'ADD_TODO';
 export const  REMOVE_TODO = 'REMOVE_TODO';
 export const  DONE_TODO = 'DONE_TODO';
+export const  ONCHANGE_VALUE = 'ONCHANGE_VALUE';
+export const  ONSUBMIT_VALUE = 'ONSUBMIT_VALUE';
 export const  PREV_STATE = 'PREV_STATE';
 export const  NEXT_STATE = 'NEXT_STATE';
 
@@ -11,24 +13,24 @@ export function addTodo(text) {
     }
 }
 
-export function removeTodo() {
+export function removeTodo(index) {
     return {
       type: REMOVE_TODO,
-      remove: true
+      index
     }
 }
 
-export function doneTodo(done) {
+export function doneTodo(index) {
     return {
       type: DONE_TODO,
-      done
+      index
     }
 }
 
-export function prevState(state) {
+export function prevState(index) {
     return {
       type: PREV_STATE,
-      state
+      index
     }
 }
 
@@ -39,5 +41,15 @@ export function nextState(state) {
     }
 }
 
+export function onChangeValue(value) {
+    return {
+      type: ONCHANGE_VALUE,
+      value
+    }
+}
 
-
+export function onSubmitValue() {
+    return {
+      type: ONSUBMIT_VALUE
+    }
+}

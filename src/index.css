@@ -5,7 +5,7 @@ body {
 }
 
 *:focus {
-    outline: 2px dashed forestgreen;
+    outline: 2px dashed #000000;
 }
 
 button {
@@ -13,12 +13,12 @@ button {
     border-radius: 10px;
     margin: 5px;
     color: white;
-    background-color: darkgreen;
-    border: 2px solid darkgreen;
+    background-color: #404040;
+    border: 2px solid #404040;
     min-width: 150px;
 }
 
 button:focus, button:active, button:hover {
-    background-color: #008000;
-    border: 2px solid #008000;
+    background-color: #000000;
+    border: 2px solid #000000;
 }

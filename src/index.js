@@ -9,7 +9,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 let store = createStore(todoApp);
-console.log(store.getState());
+
 ReactDOM.render(
     <Provider store={store}>
         <App />

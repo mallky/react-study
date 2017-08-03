@@ -6,21 +6,19 @@ class TextArea extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-
-    this.state = {value: ''};
   }
 
   handleSubmit(e) {
-    this.props.addTodos(this.state.value);
-    this.setState({value: ''});
+    this.props.addTodos(this.props.value);
+    this.props.onSubmitValue();
     e.preventDefault();
   }
   handleChange(e) {
-    this.setState({value: e.target.value});
+    this.props.onChangeValue(e.target.value)
   }
 
   render() {
-    const value = this.state.value;
+    const value = this.props.value;
 
     return (
       <div className="text-area">

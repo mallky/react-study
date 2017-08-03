@@ -5,13 +5,10 @@ class DoneBttn extends Component{
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
-
-    this.state = {done: false};
   }
 
   handleSubmit() {
-    this.setState({done: !this.state.done});
-    this.props.addClassToTodo();
+    this.props.addClassToTodo(this.props.index);
   }
 
   render(){
@@ -28,13 +25,10 @@ class RemoveBttn extends Component{
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
-
-    this.state = {remove: false};
   }
 
   handleSubmit() {
-    this.setState({remove: true});
-    this.props.removeTodo();
+    this.props.removeTodo(this.props.index);
   }
 
   render(){
@@ -49,40 +43,30 @@ class RemoveBttn extends Component{
 function ControlButtonsTodo(props) {
   return (
     <div className="buttons-into-todo">
-      <DoneBttn addClassToTodo={props.addClassToTodo}/>
-      <RemoveBttn removeTodo={props.removeTodo}/>
+      <DoneBttn 
+        addClassToTodo={props.addClassToTodo}
+        index={props.index}
+      />
+      <RemoveBttn 
+        removeTodo={props.removeTodo}
+        index={props.index}
+      />
     </div>
   );
 }
 
 function TodoText(props) {
   return (
-    <div className={ props.active ? 'todo-text active' : 'todo-text'}>
+    <div className={ props.completed ? 'todo-text active' : 'todo-text'}>
       { props.quiz + '' }
     </div>
   );
 }
 
 class ToDoItem extends Component{
-  constructor(props) {
-    super(props);
-
-    this.state = {active: false, remove: false};
-
-    this.addClassToTodo = this.addClassToTodo.bind(this);
-    this.removeTodo = this.removeTodo.bind(this);
-  }
-
-  addClassToTodo() {
-    this.setState({active: !this.state.active});
-  }
-
-  removeTodo() {
-    this.setState({remove: true});
-  }
 
   render() {
-    if (this.state.remove){
+    if (this.props.removed){
       return null;
     }
     else {
@@ -90,12 +74,13 @@ class ToDoItem extends Component{
         <li key={this.props.quiz + ''}>
           <div className="todo">
             <TodoText
-              active={this.state.active}
+              completed={this.props.completed}
               quiz={this.props.quiz}
             />
             <ControlButtonsTodo
-              addClassToTodo={this.addClassToTodo}
-              removeTodo={this.removeTodo}
+              addClassToTodo={this.props.addClassToTodo}
+              index={this.props.index}
+              removeTodo={this.props.removeTodo}
             />
           </div>
         </li>
@@ -108,7 +93,15 @@ class ToDoList extends Component{
   render() {
     const quiz = this.props.quiz;
     const list = quiz.map( (item, index) =>
-      <ToDoItem quiz={item} key={index} index={index + 1} />
+      <ToDoItem 
+        quiz={item.text}
+        completed={item.completed}
+        removed={item.removed}
+        key={index}
+        index={index}
+        addClassToTodo={this.props.addClassToTodo}
+        removeTodo={this.props.removeTodo}
+      />
     );
 
     return (
