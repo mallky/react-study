@@ -21,11 +21,11 @@ const initState = {
 
 let prevState = initState.todos,
     nextState = initState.todos,
-    localStateStore = [initState.todos],
+    localStateStore = (localStorage.length > 0) ? getFromLocalStorage()[1] : [initState.todos],
     counterPrev = 0,
     stateStoreLength = 0;
 
-const localTodos = (localStorage.length > 0) ? getFromLocalStorage() : initState;
+const localTodos = (localStorage.length > 0) ? getFromLocalStorage()[0] : initState;
 
 function todoApp(state = localTodos, action) {
     switch (action.type) {
@@ -41,7 +41,7 @@ function todoApp(state = localTodos, action) {
             } );
         }
         localStateStore.push(nextState);
-        addToLocalStorage({...state, todos: nextState});
+        addToLocalStorage({...state, todos: nextState}, localStateStore);
         return {...state, todos: nextState};
 
 
@@ -56,7 +56,7 @@ function todoApp(state = localTodos, action) {
           return todo;
         });
         localStateStore.push(nextState);
-        addToLocalStorage({...state, todos: nextState});
+        addToLocalStorage({...state, todos: nextState}, localStateStore);
         return {...state, todos: nextState};
 
 
@@ -71,7 +71,7 @@ function todoApp(state = localTodos, action) {
           return todo;
         });
         localStateStore.push(nextState);
-        addToLocalStorage({...state, todos: nextState});
+        addToLocalStorage({...state, todos: nextState}, localStateStore);
         return {...state, todos: nextState};
 
 
