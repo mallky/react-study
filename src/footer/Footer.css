@@ -11,3 +11,17 @@
 .footer div {
     padding: 5px;
 }
+
+.clear-bttn{
+    background-color: lightgray;
+    border: 1px solid lightgray;
+    color: black;
+}
+.clear-bttn:active, .clear-bttn:focus, .clear-bttn:hover {
+    background-color: white;
+    border: 1px solid white;
+}
+
+.clear-bttn:focus{
+    outline: 2px dashed white;
+}

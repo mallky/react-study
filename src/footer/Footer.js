@@ -24,12 +24,25 @@ function day(n) {
 function minutes(n) {
   return n < 10 ? '0' + n : n;
 }
-function ChangedSentence(val) {
-  if (+val % 2 === 0) {
-   return <div className="text">Divisible by 2</div>
+
+
+class ClearBttn extends Component{
+  constructor(props){
+    super(props);
+
+    this.handlerClearLocalStorage = this.handlerClearLocalStorage.bind(this);
   }
-  else {
-    return <div className="text">Not divisible by 2!</div>
+
+  handlerClearLocalStorage() {
+    localStorage.clear();
+  }
+
+  render() {
+    return <div>
+      <button className="clear-bttn" onClick={this.handlerClearLocalStorage}>
+        Clear saved data
+      </button>
+    </div>;
   }
 }
 
@@ -47,12 +60,6 @@ class Clock extends Component {
     );
   };
 }
-
-const element = React.createElement(
-  'div',
-  {className: 'greeting'},
-  'Hello, world!'
-);
 
 class Footer extends Component {
   constructor(props) {
@@ -81,9 +88,8 @@ class Footer extends Component {
   render() {
     return (
       <div className="footer">
-        {ChangedSentence(this.state.date.getMinutes())}
-        {element}
         <Clock date={this.state.date}/>
+        <ClearBttn />
       </div>
     );
   }
