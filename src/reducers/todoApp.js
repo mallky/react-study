@@ -1,4 +1,7 @@
 import { ADD_TODO, DONE_TODO, REMOVE_TODO, ONSUBMIT_VALUE, ONCHANGE_VALUE, PREV_STATE, NEXT_STATE } from '../actions/actions'
+import { addToLocalStorage } from '../commonFunc/common';
+import { getFromLocalStorage } from '../commonFunc/common';
+
 const initState = {
   todos: [ {
     text: 'Wake up!',
@@ -22,7 +25,9 @@ let prevState = initState.todos,
     counterPrev = 0,
     stateStoreLength = 0;
 
-function todoApp(state = initState, action) {
+const localTodos = (localStorage.length > 0) ? getFromLocalStorage() : initState;
+
+function todoApp(state = localTodos, action) {
     switch (action.type) {
 
       case ADD_TODO:
@@ -36,6 +41,7 @@ function todoApp(state = initState, action) {
             } );
         }
         localStateStore.push(nextState);
+        addToLocalStorage({...state, todos: nextState});
         return {...state, todos: nextState};
 
 
@@ -50,6 +56,7 @@ function todoApp(state = initState, action) {
           return todo;
         });
         localStateStore.push(nextState);
+        addToLocalStorage({...state, todos: nextState});
         return {...state, todos: nextState};
 
 
@@ -64,6 +71,7 @@ function todoApp(state = initState, action) {
           return todo;
         });
         localStateStore.push(nextState);
+        addToLocalStorage({...state, todos: nextState});
         return {...state, todos: nextState};
 
 
