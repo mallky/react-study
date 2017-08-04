@@ -17,13 +17,15 @@ const initState = {
 };
 
 let prevState = initState.todos,
-  nextState = initState.todos;
+    nextState = initState.todos,
+    localStateStore = [initState.todos],
+    counterPrev = 0,
+    stateStoreLength = 0;
 
 function todoApp(state = initState, action) {
     switch (action.type) {
 
       case ADD_TODO:
-        prevState = state.todos.slice();
         nextState = state.todos.slice();
         if (action.text) {
           nextState.push(
@@ -33,27 +35,26 @@ function todoApp(state = initState, action) {
               removed: false
             } );
         }
+        localStateStore.push(nextState);
         return {...state, todos: nextState};
 
 
 
       case DONE_TODO:
-        prevState = state.todos.slice();
         nextState = state.todos.map((todo, index) => {
           if (index === action.index) {
             return Object.assign({}, todo, {
               completed: !todo.completed
             });
           }
-
           return todo;
         });
+        localStateStore.push(nextState);
         return {...state, todos: nextState};
 
 
 
       case REMOVE_TODO:
-        prevState = state.todos.slice();
         nextState = state.todos.map((todo, index) => {
           if (index === action.index) {
             return Object.assign({}, todo, {
@@ -62,16 +63,27 @@ function todoApp(state = initState, action) {
           }
           return todo;
         });
+        localStateStore.push(nextState);
         return {...state, todos: nextState};
 
 
 
       case PREV_STATE:
+        stateStoreLength = localStateStore.length - 1;
+        if ( counterPrev < stateStoreLength ) {
+          counterPrev += 1;
+        }
+        prevState = localStateStore[ stateStoreLength - counterPrev ];
         return {...state, todos: prevState};
 
 
 
       case NEXT_STATE:
+        stateStoreLength = localStateStore.length - 1;
+        if ( counterPrev > 0 ) {
+          counterPrev -= 1;
+        }
+        nextState = localStateStore[ stateStoreLength - counterPrev ];
         return {...state, todos: nextState};
 
 
